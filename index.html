@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Xu Binbin (徐彬彬) - Homepage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --nav-width: 220px;
+      --sidebar-width: 260px;
+      --accent: #3d6dba;
+      --accent-light: #5585d4;
+      --text: #333;
+      --muted: #666;
+      --border: #e0e0e0;
+      --bg: #fff;
+      --section-gap: 2.2rem;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: var(--bg);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── Left nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0;
+      width: var(--nav-width);
+      height: 100vh;
+      background: #f8f8f8;
+      border-right: 1px solid var(--border);
+      padding: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+      overflow-y: auto;
+    }
+
+    nav .nav-brand {
+      padding: 0 1.4rem 1.5rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0.8rem;
+    }
+
+    nav a {
+      display: block;
+      padding: 0.45rem 1.4rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.2s, background 0.2s;
+      border-left: 3px solid transparent;
+    }
+    nav a:hover, nav a.active {
+      color: var(--accent);
+      background: #eef2fb;
+      border-left-color: var(--accent);
+    }
+
+    /* ── Main wrapper ── */
+    .main-wrapper {
+      margin-left: var(--nav-width);
+      display: flex;
+      flex: 1;
+      max-width: 1100px;
+      width: 100%;
+    }
+
+    /* ── Sidebar profile ── */
+    .sidebar {
+      position: sticky;
+      top: 0;
+      width: var(--sidebar-width);
+      min-width: var(--sidebar-width);
+      height: 100vh;
+      padding: 2.5rem 1.5rem;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      overflow-y: auto;
+    }
+
+    .sidebar img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--border);
+      margin-bottom: 1rem;
+      background: #ddd;
+    }
+
+    .sidebar .avatar-placeholder {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3d6dba 0%, #5585d4 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      border: 3px solid var(--border);
+    }
+
+    .sidebar h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      color: var(--text);
+    }
+
+    .sidebar .info-item {
+      font-size: 0.83rem;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+      text-align: left;
+      width: 100%;
+    }
+
+    .sidebar .info-item .icon { flex-shrink: 0; margin-top: 1px; }
+
+    .sidebar-links {
+      margin-top: 1rem;
+      width: 100%;
+    }
+    .sidebar-links a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-decoration: none;
+      padding: 0.3rem 0;
+      border-bottom: 1px solid #f0f0f0;
+      transition: color 0.2s;
+    }
+    .sidebar-links a:hover { color: var(--accent-light); }
+
+    /* ── Content ── */
+    .content {
+      flex: 1;
+      padding: 2.5rem 2.8rem;
+      max-width: 760px;
+    }
+
+    .content section {
+      margin-bottom: var(--section-gap);
+      padding-bottom: var(--section-gap);
+      border-bottom: 1px solid var(--border);
+    }
+    .content section:last-child { border-bottom: none; }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    p { line-height: 1.7; color: #444; margin-bottom: 0.7rem; }
+    p:last-child { margin-bottom: 0; }
+
+    /* News */
+    .news-list { list-style: none; }
+    .news-list li {
+      padding: 0.4rem 0;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      border-bottom: 1px dashed #eee;
+    }
+    .news-list li:last-child { border-bottom: none; }
+    .news-date { font-weight: 700; color: var(--text); }
+
+    /* Education */
+    .edu-list { list-style: none; }
+    .edu-list li {
+      padding: 0.4rem 0;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    /* Research experiences */
+    .research-item {
+      margin-bottom: 1.2rem;
+    }
+    .research-item h4 {
+      font-size: 0.93rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      color: var(--text);
+    }
+    .research-item .research-meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+      font-style: italic;
+    }
+    .research-item p {
+      font-size: 0.88rem;
+      color: #555;
+      margin-bottom: 0;
+    }
+
+    /* Publications */
+    .pub-list { list-style: none; counter-reset: pub-counter; }
+    .pub-list li {
+      counter-increment: pub-counter;
+      padding: 0.8rem 0;
+      border-bottom: 1px dashed #eee;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      padding-left: 2rem;
+      position: relative;
+    }
+    .pub-list li::before {
+      content: counter(pub-counter) ".";
+      position: absolute;
+      left: 0;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .pub-list li:last-child { border-bottom: none; }
+    .pub-title { font-weight: 700; color: var(--text); }
+    .pub-title a { color: var(--accent); text-decoration: none; }
+    .pub-title a:hover { text-decoration: underline; }
+    .pub-authors { display: block; color: var(--muted); font-size: 0.85rem; margin-top: 0.2rem; }
+    .pub-venue { display: block; font-style: italic; color: #555; font-size: 0.85rem; margin-top: 0.1rem; }
+    .pub-venue strong { font-style: normal; color: var(--text); }
+    .pub-note { display: block; font-size: 0.82rem; color: #777; margin-top: 0.2rem; }
+    .pub-detail {
+      display: block;
+      font-size: 0.82rem;
+      color: #666;
+      margin-top: 0.3rem;
+      padding-left: 1rem;
+      border-left: 2px solid var(--border);
+    }
+    .pub-detail::before { content: "◼ "; }
+    .me { font-weight: 700; text-decoration: underline; }
+
+    /* Awards */
+    .award-list { list-style: none; counter-reset: award-counter; }
+    .award-list li {
+      counter-increment: award-counter;
+      padding: 0.45rem 0 0.45rem 2rem;
+      position: relative;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      border-bottom: 1px dashed #eee;
+    }
+    .award-list li:last-child { border-bottom: none; }
+    .award-list li::before {
+      content: counter(award-counter) ".";
+      position: absolute;
+      left: 0;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .award-note {
+      display: block;
+      font-size: 0.82rem;
+      color: #777;
+      padding-left: 1rem;
+      border-left: 2px solid var(--border);
+      margin-top: 0.2rem;
+    }
+
+    /* Skills */
+    .skills-section p { font-size: 0.9rem; line-height: 1.7; }
+    .skill-label { font-weight: 700; }
+
+    /* Service */
+    .service-list { list-style: disc; padding-left: 1.5rem; }
+    .service-list li { font-size: 0.9rem; line-height: 1.7; padding: 0.2rem 0; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      nav { display: none; }
+      .main-wrapper { margin-left: 0; }
+      .sidebar { position: static; height: auto; width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+      .content { padding: 1.5rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Left Navigation -->
+<nav>
+  <div class="nav-brand">Xu Binbin 徐彬彬</div>
+  <a href="#about">🧐 About Me</a>
+  <a href="#news">🔥 News</a>
+  <a href="#education">📖 Educations</a>
+  <a href="#research">🔬 Research Experiences</a>
+  <a href="#publications">📝 Publications</a>
+  <a href="#awards">🏆 Honors and Awards</a>
+  <a href="#service">✒️ Professional Service</a>
+  <a href="#skills">💻 Skills</a>
+</nav>
+
+<!-- Main Wrapper -->
+<div class="main-wrapper">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="avatar-placeholder">徐</div>
+    <h2>Xu Binbin<br><span style="font-weight:400;font-size:0.95rem;color:#666;">徐彬彬</span></h2>
+
+    <div class="info-item">
+      <span class="icon">🎓</span>
+      <span>Ph.D. Student in Management Science and Engineering, Chinese Academy of Sciences</span>
+    </div>
+    <div class="info-item">
+      <span class="icon">📍</span>
+      <span>Beijing, China</span>
+    </div>
+
+    <div class="sidebar-links">
+      <a href="mailto:xubinbin22@mails.ucas.ac.cn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        Email
+      </a>
+      <a href="tel:+8613258375958">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.07 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +86 13258375958
+      </a>
+    </div>
+  </aside>
+
+  <!-- Content -->
+  <div class="content">
+
+    <!-- About Me -->
+    <section id="about">
+      <h2 class="section-title">🧐 About Me</h2>
+      <p>
+        I am <strong>Xu Binbin (徐彬彬)</strong>, a Ph.D. student in Management Science and Engineering at the 
+        <strong>Chinese Academy of Sciences, Institutes of Science and Development</strong> (GPA: 3.9/4), 
+        where I have been pursuing my doctoral degree since September 2022. 
+        Prior to this, I received my B.S. in Business Administration from 
+        <strong>Southwest Jiaotong University, School of Economics and Management</strong> (Chengdu, China) in June 2022.
+      </p>
+      <p>
+        My research interests span natural language processing (NLP), text mining, knowledge graph construction, 
+        graph neural networks, agent-based modeling, large language models, and complex systems. 
+        I am passionate about applying advanced data-driven and AI techniques to energy, technology strategy, 
+        and scholarly influence evaluation.
+      </p>
+
+      <h3 style="font-size:1rem;margin: 1rem 0 0.5rem;">🤔 Research Interests:</h3>
+      <ul style="padding-left:1.5rem;font-size:0.9rem;line-height:1.8;color:#444;">
+        <li>Natural Language Processing &amp; Text Mining</li>
+        <li>Knowledge Graph Construction &amp; Graph Neural Networks</li>
+        <li>Large Language Models &amp; Agent-Based Modeling</li>
+        <li>Big Data Mining &amp; Complex Systems</li>
+        <li>Link Prediction &amp; Causal Inference</li>
+        <li>Energy Technology Strategy &amp; Scholar Influence Evaluation</li>
+      </ul>
+    </section>
+
+    <!-- News -->
+    <section id="news">
+      <h2 class="section-title">🔥 News</h2>
+      <ul class="news-list">
+        <li><span class="news-date">2026.01</span>: 🎉 First-author paper accepted by <em>Think Tank: Theory &amp; Practice</em> — Challenges in Data Element Governance from a Multi-Stakeholder Perspective.</li>
+        <li><span class="news-date">2025.11</span>: 🎉 Co-authored paper accepted by <em>Think Tank: Theory &amp; Practice</em> — Research on the dependency structure and evolution of China's satellite internet industry chain.</li>
+        <li><span class="news-date">2025.10</span>: 🎉 Joined <strong>Beijing Intelligent Token Technology Co., Ltd.</strong> as a Deep Learning Algorithm Intern.</li>
+        <li><span class="news-date">2025.10</span>: 🎉 Joined <strong>Institute of Automation, Chinese Academy of Sciences</strong> as a Large Language Model Intern.</li>
+        <li><span class="news-date">2025.08</span>: 🎉🎉🎉 Paper presented at the 27th China Management Science Academic Annual Conference — Technology Tree Construction for Power Data Elements Based on SAO Semantic Mining.</li>
+        <li><span class="news-date">2025.01</span>: 🎉 Elected <strong>President of the Graduate Student Union</strong>, CAS, Institutes of Science and Development.</li>
+        <li><span class="news-date">2024.05</span>: 🎉🎉🎉 <strong>National Grand Prize</strong> (Top 0.1%) at the 10th National University Energy Economics Academic Competition — First Author.</li>
+        <li><span class="news-date">2024.05</span>: 🎉 Recognized as <strong>Merit Student</strong> of University of Chinese Academy of Sciences.</li>
+        <li><span class="news-date">2024.01</span>: 🎉 First-author paper published in <em>Expert Systems with Applications</em> — Graph-based algorithm for exploring collaboration mechanisms among top scholars.</li>
+        <li><span class="news-date">2023.10</span>: 🎉🎉🎉 <strong>Outstanding Paper Award</strong> (Top 2%) at the 19th China Conference on Science and Technology Policy and Management — First Author.</li>
+        <li><span class="news-date">2022.06</span>: 🎉 Recognized as <strong>Outstanding Graduate of Sichuan Province</strong>.</li>
+        <li><span class="news-date">2022.09</span>: 🎉 Started Ph.D. program at Chinese Academy of Sciences, Institutes of Science and Development.</li>
+      </ul>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <h2 class="section-title">📖 Educations</h2>
+      <ul class="edu-list">
+        <li>🔹 <em>2022.09 – Present</em>, Ph.D. in Management Science and Engineering, Chinese Academy of Sciences, Institutes of Science and Development, Beijing, China. (GPA: 3.9/4)</li>
+        <li>🔹 <em>2018.09 – 2022.06</em>, B.S. in Business Administration, Southwest Jiaotong University, School of Economics and Management, Chengdu, China.</li>
+      </ul>
+    </section>
+
+    <!-- Research Experiences -->
+    <section id="research">
+      <h2 class="section-title">🔬 Research Experiences</h2>
+
+      <div class="research-item">
+        <div class="research-meta">2025.10 – 2026.06 | Intern Project</div>
+        <h4>SemRank: Semantic-Enhanced Scholar Influence Evaluation Platform</h4>
+        <p>Spearheaded the R&amp;D of a 5-stage framework optimizing PageRank via NetworkX with temporal and venue-quality factors. Synergized LLMs and Embeddings to automate topic clustering and classify citation intents (Zero-shot), creating a semantic-aware evaluation network. Developed an interactive Web platform for visualization, currently supporting projects at Beihang University and overseas funding roadshows.</p>
+      </div>
+
+      <div class="research-item">
+        <div class="research-meta">2025.05 – 2026.12 | State Grid Project</div>
+        <h4>Analysis of Power Data Elements and Technology Genealogy Construction</h4>
+        <p>Developed an open-data and AI-driven research framework using PyTorch, BERT, and GRU models. Transformed triple extraction into sequence labeling tasks, integrating part-of-speech priors and predicate masking for entity recognition. Enhanced relation extraction using syntactic analysis and SBERT-based semantic similarity from academic and patent literature.</p>
+      </div>
+
+      <div class="research-item">
+        <div class="research-meta">2023.06 – 2024.12 | Huawei Shenzhen Project</div>
+        <h4>Strategic Development Model for Energy Storage Enterprises</h4>
+        <p>Utilized system dynamics, Haken model, agent-based modeling (ABM), and graph convolutional networks (GCN) to simulate digital energy strategy and resource allocation. Designed multi-scenario analysis frameworks to optimize R&amp;D investment and model competitive dynamics, supporting data-driven strategic decision-making.</p>
+      </div>
+
+      <div class="research-item">
+        <div class="research-meta">2022.05 – 2022.12 | State Grid Project</div>
+        <h4>Frontiers of Hydrogen Energy Technology</h4>
+        <p>Applied natural language processing (NLP) and text mining to analyze global hydrogen energy technologies, including electrolysis and large-scale storage across 14 thematic areas. Conducted comparative analysis of hydrogen strategies in China, the U.S., Japan, Germany, and the EU. Developed multi-dimensional visualizations and knowledge graphs to track the evolution of hydrogen projects (2017–2022), revealing global trends and interconnections.</p>
+      </div>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications">
+      <h2 class="section-title">📝 Publications</h2>
+      <ol class="pub-list">
+        <li>
+          <span class="pub-title"><a href="https://doi.org/10.1016/j.eswa.2024.123810" target="_blank">Graph-based algorithm for exploring collaboration mechanisms and hidden patterns among top scholars</a></span>
+          <span class="pub-authors"><span class="me">Xu, B.</span>, Guo, J., Liu, S.</span>
+          <span class="pub-venue"><strong>Expert Systems with Applications</strong>, 249, 123810, 2024</span>
+          <span class="pub-detail">Constructed global scholar collaboration networks using graph algorithms (e.g., dominance flow analysis) to uncover hierarchical structures and collaboration drivers. Developed link prediction models identifying potential collaborations based on geographic proximity, research similarity, and academic influence.</span>
+        </li>
+        <li>
+          <span class="pub-title"><a href="https://doi.org/10.1016/j.isci.2024.111245" target="_blank">Unveiling the bidirectional link between electric vehicle sales and charging infrastructure: Evidence from 95 cities in China</a></span>
+          <span class="pub-authors">Guo, J., <span class="me">Xu, B.</span>, Cao, Q., Liu, S., Gu, F., Zhang X.</span>
+          <span class="pub-venue"><strong>iScience</strong>, 27, 111245, 2024</span>
+          <span class="pub-detail">Applied panel vector autoregression (PVAR) to analyze causal relationships between EV adoption and charging infrastructure across Chinese cities. Quantified moderating effects of climate, housing prices, and subsidies, revealing differential infrastructure dependencies for BEVs and PHEVs.</span>
+        </li>
+        <li>
+          <span class="pub-title">Research on the dependency structure and evolution of China's satellite internet industry chain under the background of Sino-US technological strategic competition</span>
+          <span class="pub-authors">Fan, W., Li, X., <span class="me">Xu, B.</span>, Guo, J.</span>
+          <span class="pub-venue"><strong>Think Tank: Theory &amp; Practice</strong>, 2025.11</span>
+          <span class="pub-detail">Constructed trade dependency risk indices based on 2014–2023 UN Comtrade data to quantify the structural evolution of China's satellite internet industry, revealing a dual pattern of upstream reliance on Western technology and downstream supply chain migration to Southeast Asia under geopolitical friction.</span>
+        </li>
+        <li>
+          <span class="pub-title">Challenges in Data Element Governance from a Multi-Stakeholder Perspective</span>
+          <span class="pub-authors">Fan, W., Cao, Q., <span class="me">Xu, B.</span>, Li J., Guo, J.</span>
+          <span class="pub-venue"><strong>Think Tank: Theory &amp; Practice</strong>, 2026.01</span>
+          <span class="pub-detail">Using NLP and topic mining (BERTopic), conducted semantic analysis and topic clustering on 2,528 high-quality publications from the WOS database. Constructed a six-level hierarchical structural model via DEMATEL-ISM-MICMAC analysis.</span>
+        </li>
+        <li>
+          <span class="pub-title">Who leads the high-quality development of enterprises? — Asymmetric Collaborative Evolution Analysis of "Efficiency Innovation Digitization" in High-end Equipment Manufacturing Industry</span>
+          <span class="pub-authors"><span class="me">Xu, B.</span>, Liu, S., Guo, J.</span>
+          <span class="pub-venue"><strong>The 19th Annual Conference on Science and Technology Policy and Management in China</strong>, 2023</span>
+          <span class="pub-note">🏆 Outstanding Paper Award (Top 2%)</span>
+          <span class="pub-detail">Employed the Haken Model and empirical analysis on 107 high-end equipment manufacturing firms. Proved that economic efficiency currently dominates the evolutionary system as the "order parameter," while digital transformation shows a significant time-lag effect.</span>
+        </li>
+        <li>
+          <span class="pub-title">Empowering Energy Digitalization: Lifecycle Technology Tree Construction for Power Data Elements Based on SAO Semantic Mining</span>
+          <span class="pub-authors"><span class="me">Xu, B.</span>, Fan, W., Cao, Q., Liu, S., Zhou, J., Yang, Z., Wei, Z., Guo, J.</span>
+          <span class="pub-venue"><strong>The 27th China Management Science Academic Annual Conference</strong>, 2025</span>
+          <span class="pub-detail">Proposed a deep learning-based approach leveraging BERT-BiGRU-CRF model to automatically extract semantic triplets from a dataset of 1.64 million documents for technology tree construction and evolution analysis.</span>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Awards -->
+    <section id="awards">
+      <h2 class="section-title">🏆 Honors and Awards</h2>
+      <ol class="award-list">
+        <li>
+          Merit Student, University of Chinese Academy of Sciences (Two times), 2024.05 &amp; 2025.05
+        </li>
+        <li>
+          <strong>National Grand Prize</strong>, 10th National University Energy Economics Academic Competition (Top 0.1%) – First Author, 2024.05
+          <span class="award-note">Centered on synergistic optimization of national computing power and energy networks. Built a dynamic coupling model for spatiotemporal carbon-efficiency-based intelligent scheduling of cross-regional computing resource allocation.</span>
+        </li>
+        <li>
+          <strong>Outstanding Paper Award</strong> (Top 2%), 19th China Conference on Science and Technology Policy and Management – First Author, 2023.10
+        </li>
+        <li>
+          Outstanding Graduate of Sichuan Province, 2022.06
+        </li>
+        <li>
+          National Encouragement Scholarship; National Third Prize, Photonics Design Competition; National Second Prize, GMC Challenge, 2020.12
+        </li>
+        <li>
+          Gold Prize (Provincial), Internet+ Innovation Competition – Second Author (Two times), 2020.09 &amp; 2021.09
+        </li>
+        <li>
+          Merit Student, Southwest Jiaotong University (Two times), 2019.12 &amp; 2020.12
+        </li>
+      </ol>
+    </section>
+
+    <!-- Professional Service -->
+    <section id="service">
+      <h2 class="section-title">✒️ Professional Service</h2>
+      <p style="font-weight:700;margin-bottom:0.5rem;">Teaching Assistant</p>
+      <ul class="service-list">
+        <li>Big Data-Driven Decision Analysis, UCAS (2023.09 – 2024.09)</li>
+      </ul>
+
+      <p style="font-weight:700;margin: 1rem 0 0.5rem;">Academic Membership</p>
+      <ul class="service-list">
+        <li>Student Member, Energy Resource Systems Engineering Committee, Chinese Society of Systems Engineering (2023.09)</li>
+      </ul>
+
+      <p style="font-weight:700;margin: 1rem 0 0.5rem;">Leadership</p>
+      <ul class="service-list">
+        <li>President, Graduate Student Union, CAS, Institutes of Science and Development (2025.01)</li>
+        <li>Class Monitor, Alumni Director, and Student Assistant, Southwest Jiaotong University (2020.09)</li>
+      </ul>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <h2 class="section-title">💻 Skills &amp; Additional Information</h2>
+      <p><span class="skill-label">Programming &amp; Tools:</span> Linux, MySQL, Python, R, MATLAB, Stata, EViews, LaTeX, Vensim, Gephi, UCINET, CiteSpace, VOS viewer, ArcGIS, MS Office, Photoshop</p>
+      <p><span class="skill-label">Research Interests (Technical):</span> Hadoop, Hive, Spark, and other big data frameworks, Transformer, large language models, agent-based modeling, big data mining, complex systems, graph neural networks, link prediction, knowledge graph construction, causal inference</p>
+      <p><span class="skill-label">Language:</span> Chinese (Native), English (IELTS: 6.5; CET-6: 501)</p>
+    </section>
+
+  </div><!-- .content -->
+</div><!-- .main-wrapper -->
+
+<script>
+  // Highlight active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+
+</body>
+</html>
